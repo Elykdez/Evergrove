@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evergrove</title>
+    <meta name="description" content="Evergrove, a simple procedural tree generator: grow a tree into a crown envelope and export it as GLB or OBJ." />
+    <meta name="theme-color" content="#cfdbe4" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:title" content="Evergrove" />
+    <meta property="og:image" content="/icon-512.png" />
+  </head>
+  <body class="intro boot">
+    <div id="app"></div>
+    <div id="intro" aria-hidden="true">
+      <div class="intro-title" data-i18n="app.title">Evergrove</div>
+      <div class="intro-sub" data-i18n="intro.loading">A procedural tree generator</div>
+    </div>
+    <div id="unsupported" role="alert" hidden></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

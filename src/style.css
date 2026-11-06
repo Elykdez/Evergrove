@@ -1,0 +1,447 @@
+/*
+ * Evergrove UI: one layout, two skins.
+ * The layout rules below read only the --eg-* tokens. The natural skin (default) is a frosted
+ * field-journal look: warm paper glass, moss green, a serif wordmark. The retro skin (body.intro)
+ * takes over while the neon grid world is on screen, at first load and whenever a new tree is
+ * loading, and swaps the same tokens for synthwave neon and a monospace face.
+ */
+
+/* ---------------------------------------------------------------- Tokens */
+
+:root {
+  --eg-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --eg-font-brand: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --eg-bg: rgba(249, 248, 242, 0.8);
+  --eg-bg-strong: rgba(255, 254, 250, 0.96);
+  --eg-fg: #1f2b22;
+  --eg-title: #1f2b22;
+  --eg-muted: #687366;
+  --eg-faint: #9aa396;
+  --eg-line: rgba(31, 43, 34, 0.1);
+  --eg-widget: rgba(31, 43, 34, 0.05);
+  --eg-hover: rgba(31, 43, 34, 0.085);
+  --eg-focus: rgba(74, 122, 52, 0.16);
+  --eg-switch: rgba(31, 43, 34, 0.2);
+  --eg-knob: #ffffff;
+  --eg-accent: #4a7a34;
+  --eg-accent-strong: #3b6529;
+  --eg-accent-fg: #fbfdf8;
+  --eg-accent-soft: rgba(74, 122, 52, 0.14);
+  --eg-number: #3b6529;
+  --eg-icon: #86a275;
+  --eg-chart: #5f9346;
+  --eg-fruit: #c8423a;
+  --eg-glow: none;
+  --eg-text-glow: none;
+  --eg-blur: blur(20px) saturate(1.5);
+  --eg-edge: rgba(255, 255, 255, 0.65);
+  --eg-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset, 0 22px 48px -18px rgba(24, 40, 26, 0.38),
+    0 2px 8px rgba(24, 40, 26, 0.08);
+  --eg-page: #cfdbe4;
+}
+
+body.intro {
+  --eg-font: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, monospace;
+  --eg-font-brand: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, monospace;
+  --eg-bg: rgba(9, 3, 30, 0.84);
+  --eg-bg-strong: rgba(14, 5, 44, 0.96);
+  --eg-fg: #9ff9ff;
+  --eg-title: #ff7ad9;
+  --eg-muted: #8b8fd8;
+  --eg-faint: #5d5fa6;
+  --eg-line: rgba(25, 230, 255, 0.2);
+  --eg-widget: rgba(52, 24, 130, 0.42);
+  --eg-hover: rgba(80, 36, 170, 0.6);
+  --eg-focus: rgba(255, 42, 140, 0.24);
+  --eg-switch: rgba(25, 230, 255, 0.22);
+  --eg-knob: #e8fdff;
+  --eg-accent: #ff2a8c;
+  --eg-accent-strong: #ff53a6;
+  --eg-accent-fg: #ffffff;
+  --eg-accent-soft: rgba(255, 42, 140, 0.2);
+  --eg-number: #ffb347;
+  --eg-icon: #19e6ff;
+  --eg-chart: #19e6ff;
+  --eg-fruit: #ffb347;
+  --eg-glow: 0 0 10px rgba(255, 42, 140, 0.55);
+  --eg-text-glow: 0 0 6px rgba(25, 230, 255, 0.85), 0 0 16px rgba(255, 42, 140, 0.6);
+  --eg-blur: blur(10px);
+  --eg-edge: rgba(25, 230, 255, 0.55);
+  --eg-shadow: 0 0 22px rgba(25, 230, 255, 0.32), 0 0 60px -12px rgba(255, 42, 140, 0.45);
+  --eg-page: #05010f;
+}
+
+/* ---------------------------------------------------------------- Page */
+
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--eg-page); font-family: var(--eg-font); }
+#app { position: absolute; inset: 0; }
+
+/* Both skins cross-fade only while switching, so hover feedback stays instant the rest of the time. */
+body.theme-shift .eg-panel, body.theme-shift .eg-panel * {
+  transition: background-color 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s, text-shadow 0.4s !important;
+}
+
+/* ---------------------------------------------------------------- Panel shell */
+
+body .lil-gui {
+  --background-color: transparent;
+  --text-color: var(--eg-fg);
+  --title-background-color: transparent;
+  --title-text-color: var(--eg-fg);
+  --widget-color: var(--eg-widget);
+  --hover-color: var(--eg-hover);
+  --focus-color: var(--eg-focus);
+  --number-color: var(--eg-number);
+  --string-color: var(--eg-number);
+  --font-family: var(--eg-font);
+  --font-family-mono: var(--eg-font);
+  --font-size: 12px;
+  --input-font-size: 12px;
+  --padding: 14px;
+  --spacing: 5px;
+  --widget-height: 24px;
+  --name-width: 44%;
+  --slider-knob-width: 0px;
+  --slider-input-width: 22%;
+  --slider-input-min-width: 50px;
+  --color-input-width: 30%;
+  --folder-indent: 0px;
+  --widget-border-radius: 6px;
+  --scrollbar-width: 6px;
+}
+
+.lil-gui.root.eg-panel {
+  top: 12px;
+  right: 12px;
+  max-height: calc(100% - 24px);
+  border-radius: 18px;
+  background: var(--eg-bg);
+  -webkit-backdrop-filter: var(--eg-blur);
+  backdrop-filter: var(--eg-blur);
+  box-shadow: var(--eg-shadow);
+  outline: 1px solid var(--eg-edge);
+  outline-offset: -1px;
+  overflow: hidden;
+}
+.eg-panel > .title { display: none; }
+.eg-panel > .children { flex: 1 1 auto; min-height: 0; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: var(--eg-hover) transparent; }
+.lil-gui.root.eg-panel > .children::-webkit-scrollbar-thumb { background: var(--eg-hover); }
+.eg-panel [hidden] { display: none !important; }
+.eg-panel button:focus-visible, .eg-panel select:focus-visible, .eg-panel input:focus-visible {
+  outline: 2px solid var(--eg-accent);
+  outline-offset: 2px;
+}
+
+/* Header: brand, language, tabs. Fixed above the scrolling area. */
+.eg-header { flex: none; padding: 16px 16px 0; border-bottom: 1px solid var(--eg-line); }
+.eg-brand { display: flex; align-items: center; gap: 11px; }
+.eg-mark {
+  position: relative; flex: none; width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(150deg, var(--eg-accent-strong), var(--eg-accent));
+  box-shadow: 0 6px 14px -6px var(--eg-accent), var(--eg-glow);
+}
+.eg-mark::after {
+  content: ''; position: absolute; inset: 6px; background: var(--eg-accent-fg);
+  -webkit-mask: url('/mark-white.png') center / contain no-repeat;
+  mask: url('/mark-white.png') center / contain no-repeat;
+}
+.eg-brand-words { flex: 1; min-width: 0; }
+.eg-brand-name { font-family: var(--eg-font-brand); font-size: 19px; font-weight: 600; line-height: 1.1; color: var(--eg-title); text-shadow: var(--eg-text-glow); }
+.eg-brand-tag { margin-top: 3px; font-size: 11px; color: var(--eg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eg-panel .eg-lang {
+  appearance: none; -webkit-appearance: none; flex: none; height: 26px; padding: 0 24px 0 10px;
+  border: 1px solid var(--eg-line); border-radius: 999px; background-color: var(--eg-widget); color: var(--eg-fg);
+  font: 500 11px var(--eg-font); cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 13px) 55%, calc(100% - 9px) 55%;
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+}
+.eg-panel .eg-lang:hover { background-color: var(--eg-hover); }
+/* Round icon link beside the fold button (the project's GitHub page). */
+.eg-icon-link {
+  flex: none; align-self: center; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-bottom: 3px;
+  border: 1px solid var(--eg-line); border-radius: 50%; background: var(--eg-widget); color: var(--eg-fg);
+  transition: background-color 0.15s, color 0.15s;
+}
+.eg-icon-link:hover { background: var(--eg-hover); color: var(--eg-title); }
+.eg-icon-link:focus-visible { outline: 2px solid var(--eg-accent); outline-offset: 2px; }
+.eg-icon-link svg { width: 15px; height: 15px; }
+/* Pairs it with the fold button instead of spacing it like a tab. */
+.eg-panel .eg-icon-link + .eg-collapse { margin-left: -12px; }
+.eg-panel .eg-collapse {
+  position: relative; flex: none; align-self: center; width: 26px; height: 26px; margin-bottom: 3px; border: 1px solid var(--eg-line); border-radius: 50%;
+  background: var(--eg-widget); color: var(--eg-fg); cursor: pointer;
+}
+.eg-panel .eg-collapse:hover { background: var(--eg-hover); }
+.eg-collapse::before {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor; transform: translate(-50%, -75%) rotate(45deg); transition: transform 0.2s ease;
+}
+.eg-collapsed .eg-collapse::before { transform: translate(-50%, -25%) rotate(-135deg); }
+/* Folded: header and download bar only. */
+.lil-gui.root.eg-collapsed > .children { display: none; }
+.eg-collapsed .eg-tab.active::after { transform: scaleX(0); }
+.eg-panel .eg-lang option { color: #1f2b22; background: #ffffff; }
+
+.eg-tabs { display: flex; gap: 20px; margin-top: 14px; }
+.eg-panel .eg-tab {
+  position: relative; flex: 1; width: auto; padding: 8px 0 11px; border: 0; background: none; cursor: pointer;
+  color: var(--eg-muted); font: 600 12.5px var(--eg-font); letter-spacing: 0.01em;
+}
+.eg-panel .eg-tab:hover { color: var(--eg-fg); }
+.eg-panel .eg-tab.active { color: var(--eg-fg); text-shadow: var(--eg-text-glow); }
+.eg-panel .eg-tab::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px;
+  background: var(--eg-accent); box-shadow: var(--eg-glow); transform: scaleX(0); transition: transform 0.2s ease;
+}
+.eg-panel .eg-tab.active::after { transform: scaleX(1); }
+.eg-tab-hint { padding: 12px 16px 2px; font-size: 11.5px; line-height: 1.45; color: var(--eg-muted); }
+
+/* Footer: the download bar, on every tab. */
+.eg-footer { flex: none; display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 14px; border-top: 1px solid var(--eg-line); }
+.eg-footer-actions { display: flex; gap: 8px; }
+.eg-panel .eg-footer .eg-btn { height: 38px; font-size: 13px; }
+.eg-panel .eg-footer .eg-btn-primary { flex: 1; }
+/* Folded, the bar holds the actions of the current tab: Random seed (Tree), Grove, Debugger and Post-processing (Scene), GLB and Batch (Export). */
+.eg-panel .eg-footer .eg-act-random, .eg-panel .eg-footer .eg-act-scene, .eg-panel .eg-footer .eg-act-batch { display: none; }
+.eg-panel.eg-collapsed[data-tab='export'] .eg-footer .eg-act-batch { display: inline-flex; }
+.eg-collapsed[data-tab='tree'] .eg-act-glb, .eg-collapsed[data-tab='tree'] .eg-act-obj,
+.eg-collapsed[data-tab='scene'] .eg-act-glb, .eg-collapsed[data-tab='scene'] .eg-act-obj,
+.eg-collapsed[data-tab='export'] .eg-act-obj { display: none; }
+.eg-panel.eg-collapsed[data-tab='tree'] .eg-footer .eg-act-random { display: inline-flex; flex: 1; }
+.eg-panel.eg-collapsed[data-tab='scene'] .eg-footer .eg-act-scene { display: flex; flex: 1; min-width: 0; }
+/*
+ * Segmented control: one rounded container, equal sections split by hairlines. Only the outer
+ * corners are rounded, so two, three or more sections read as a single component.
+ */
+.eg-segmented {
+  display: flex; align-items: stretch; height: 38px; border: 1px solid var(--eg-line); border-radius: 12px;
+  background: var(--eg-widget); overflow: hidden;
+}
+.eg-panel .eg-seg {
+  position: relative; flex: 1 1 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: auto; min-width: 0; height: auto; padding: 0 12px; border: 0; border-radius: 0; background: transparent;
+  color: var(--eg-muted); font: 600 12.5px var(--eg-font); white-space: nowrap; cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.eg-panel .eg-seg + .eg-seg { border-left: 1px solid var(--eg-line); }
+.eg-panel .eg-seg:hover { background: var(--eg-hover); color: var(--eg-fg); }
+.eg-panel .eg-seg:focus-visible { outline: 2px solid var(--eg-accent); outline-offset: -3px; }
+.eg-seg-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+/* Toggle sections: a status dot that lights up, and an accent fill while on. */
+.eg-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--eg-switch); transition: background-color 0.2s, box-shadow 0.2s; }
+.eg-panel .eg-toggle.on { background: var(--eg-accent); color: var(--eg-accent-fg); text-shadow: var(--eg-text-glow); }
+.eg-panel .eg-toggle.on:hover { background: var(--eg-accent-strong); }
+.eg-panel .eg-toggle.on + .eg-toggle.on { border-left-color: rgba(255, 255, 255, 0.28); }
+.eg-toggle.on .eg-dot { background: var(--eg-accent-fg); box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25); }
+
+.eg-panel .eg-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px; width: auto; height: 30px; padding: 0 13px;
+  border: 1px solid var(--eg-line); border-radius: 10px; background: var(--eg-widget); color: var(--eg-fg);
+  font: 600 12px var(--eg-font); white-space: nowrap; cursor: pointer; transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.eg-panel .eg-btn svg { width: 16px; height: 16px; flex: none; }
+.eg-panel .eg-btn:hover { background: var(--eg-hover); }
+.eg-panel .eg-btn:active { transform: translateY(1px); }
+.eg-panel .eg-btn-primary { border-color: transparent; background: var(--eg-accent); color: var(--eg-accent-fg); box-shadow: 0 8px 18px -10px var(--eg-accent), var(--eg-glow); }
+.eg-panel .eg-btn-primary:hover { background: var(--eg-accent-strong); }
+
+/* ---------------------------------------------------------------- Tree tab head */
+
+.eg-block { padding: 14px 16px 10px; }
+.eg-label { display: block; margin-bottom: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--eg-muted); }
+.eg-presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.eg-panel .eg-preset {
+  display: flex; flex-direction: column; align-items: center; gap: 5px; width: auto; min-width: 0; padding: 10px 2px 8px;
+  border: 1px solid var(--eg-line); border-radius: 12px; background: var(--eg-widget); color: var(--eg-muted);
+  font: 600 11px var(--eg-font); cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.eg-panel .eg-preset svg { width: 28px; height: 28px; color: var(--eg-icon); transition: color 0.15s, transform 0.2s; }
+.eg-panel .eg-preset span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eg-panel .eg-preset:hover { background: var(--eg-hover); color: var(--eg-fg); transform: translateY(-1px); }
+.eg-panel .eg-preset:hover svg { transform: scale(1.06); }
+.eg-panel .eg-preset.active { border-color: var(--eg-accent); background: var(--eg-accent-soft); color: var(--eg-fg); box-shadow: var(--eg-glow); }
+.eg-panel .eg-preset.active svg { color: var(--eg-accent); }
+
+.eg-seed { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+.eg-seed .eg-label { margin: 0 4px 0 0; }
+.eg-panel .eg-input {
+  flex: 1; width: auto; min-width: 0; height: 30px; padding: 0 10px; border: 1px solid var(--eg-line); border-radius: 10px;
+  background: var(--eg-bg-strong); color: var(--eg-number); font: 600 13px var(--eg-font); font-variant-numeric: tabular-nums;
+  outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+}
+.eg-panel .eg-input:focus { border-color: var(--eg-accent); box-shadow: 0 0 0 3px var(--eg-accent-soft); }
+.eg-panel .eg-input::-webkit-inner-spin-button { opacity: 0.4; }
+.eg-panel .eg-dice svg { transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.eg-panel .eg-dice:hover svg { transform: rotate(90deg); }
+
+/* ---------------------------------------------------------------- Sections (lil-gui folders) */
+
+.eg-panel .lil-gui.eg-flat > .title { display: none; }
+.eg-panel .lil-gui.eg-flat > .children { margin: 0; border: 0; }
+.eg-panel .lil-gui .lil-gui > .children { margin-left: 0; border-left: 0; padding-bottom: 6px; }
+
+.eg-panel .lil-gui > .title {
+  display: flex; align-items: center; justify-content: space-between; height: 42px; padding: 0 16px;
+  border: 0; border-top: 1px solid var(--eg-line); font: 650 12.5px var(--eg-font); letter-spacing: 0.01em; color: var(--eg-fg);
+}
+.eg-panel > .children > .lil-gui:first-child > .title { border-top: 0; }
+.eg-panel .lil-gui > .title::before {
+  order: 2; content: ''; width: 6px; height: 6px; padding: 0; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  opacity: 0.45; transform: translateY(-2px) rotate(45deg); transition: transform 0.2s ease;
+}
+.eg-panel .lil-gui.closed > .title::before { content: ''; transform: rotate(-45deg); }
+body:not(.lil-gui-dragging) .eg-panel .lil-gui > .title:hover { background: var(--eg-widget); opacity: 1; }
+.eg-panel .lil-gui > .title:active { background: var(--eg-hover); opacity: 1; }
+.eg-panel .lil-gui > .title:focus { text-decoration: none; }
+.eg-panel .lil-gui + .controller { border-top: 1px solid var(--eg-line); }
+
+.eg-hint { margin: -4px 16px 8px; font-size: 11px; line-height: 1.45; color: var(--eg-muted); }
+.eg-subhead {
+  display: flex; align-items: center; gap: 8px; margin: 12px 16px 6px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--eg-faint);
+}
+/* Drawn at 272 x 64 (times the pixel ratio) and scaled to the panel width. */
+.eg-spectrum {
+  display: block; width: calc(100% - 48px); height: auto; aspect-ratio: 272 / 64; margin: 2px 16px 10px; padding: 8px; box-sizing: content-box;
+  border-radius: 10px; background: var(--eg-widget);
+}
+.eg-subhead::after { content: ''; flex: 1; height: 1px; background: var(--eg-line); }
+
+/* ---------------------------------------------------------------- Controls */
+
+.eg-panel .controller { padding: 0 16px; }
+.eg-panel .controller > .name { color: var(--eg-muted); font-weight: 500; overflow: hidden; text-overflow: ellipsis; transition: color 0.15s; }
+.eg-panel .controller:hover > .name { color: var(--eg-fg); }
+
+/* Sliders: a thin track with an accent fill and a round knob, on a full-height hit area. */
+.eg-panel .controller.number .slider {
+  position: relative; overflow: visible; background: linear-gradient(var(--eg-widget), var(--eg-widget)) center / 100% 4px no-repeat;
+  border-radius: 999px; padding-right: 0; margin-right: 6px;
+}
+.eg-panel .controller.number .slider:hover, .eg-panel .controller.number .slider.active {
+  background: linear-gradient(var(--eg-hover), var(--eg-hover)) center / 100% 4px no-repeat;
+}
+.eg-panel .controller.number .fill {
+  position: relative; height: 4px; margin-top: 10px; border: 0; border-radius: 999px; background: var(--eg-accent); box-shadow: var(--eg-glow);
+}
+.eg-panel .controller.number .fill::after {
+  content: ''; position: absolute; right: -6px; top: 50%; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--eg-knob); border: 2px solid var(--eg-accent); box-sizing: border-box;
+  transform: translateY(-50%); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); transition: transform 0.12s;
+}
+.eg-panel .controller.number .slider:hover .fill::after, .eg-panel .controller.number .slider.active .fill::after { transform: translateY(-50%) scale(1.2); }
+.eg-panel .controller.number input {
+  text-align: right; padding: 0 7px; font-variant-numeric: tabular-nums; font-weight: 600; border-radius: 7px; background: var(--eg-widget);
+}
+.eg-panel .controller.number input:focus { background: var(--eg-bg-strong); box-shadow: 0 0 0 2px var(--eg-accent-soft); }
+
+/* Dropdowns */
+.eg-panel .controller.option .display { width: 100%; border: 1px solid var(--eg-line); border-radius: 8px; background: var(--eg-widget); font-weight: 500; }
+.eg-panel .controller.option .display::after {
+  content: ''; top: 50%; right: 10px; bottom: auto; width: 5px; height: 5px; padding: 0; border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor; opacity: 0.5; transform: translateY(-70%) rotate(45deg);
+}
+
+/* Switches */
+.eg-panel .controller.boolean .widget { justify-content: flex-end; }
+.eg-panel input[type='checkbox'] {
+  position: relative; flex: none; width: 30px; height: 18px; border-radius: 999px; background: var(--eg-switch); transition: background-color 0.2s;
+}
+.eg-panel input[type='checkbox']::before {
+  content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--eg-knob); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); transition: transform 0.2s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.eg-panel input[type='checkbox']:checked { background: var(--eg-accent); box-shadow: var(--eg-glow); }
+.eg-panel input[type='checkbox']:checked::before { content: ''; transform: translateX(12px); }
+.eg-panel input[type='checkbox']:focus { box-shadow: none; }
+
+/* Colour swatches */
+.eg-panel .controller.color .display { border-radius: 8px; box-shadow: inset 0 0 0 1px var(--eg-line); }
+.eg-panel .controller.color input[type='text'] { text-align: center; border-radius: 7px; }
+
+/* Buttons from lil-gui (export, batch, reset) */
+.eg-panel .controller.function { margin: 6px 0; }
+.eg-panel .controller.function button {
+  height: 32px; border: 1px solid var(--eg-line); border-radius: 10px; background: var(--eg-widget); color: var(--eg-fg); font-weight: 600;
+}
+.eg-panel .controller.function button:hover { background: var(--eg-hover); }
+.eg-panel .controller.eg-primary button { border-color: transparent; background: var(--eg-accent); color: var(--eg-accent-fg); box-shadow: var(--eg-glow); }
+.eg-panel .controller.eg-primary button:hover { background: var(--eg-accent-strong); }
+.eg-panel .controller.eg-quiet { margin-top: 10px; border-top: 1px solid var(--eg-line); padding-top: 12px; }
+.eg-panel .controller.eg-quiet button { border-style: dashed; background: transparent; color: var(--eg-muted); }
+
+/* ---------------------------------------------------------------- Tree summary (panel footer) */
+
+.eg-summary { display: flex; flex-direction: column; gap: 8px; }
+.eg-panel .eg-summary-head {
+  display: flex; align-items: baseline; gap: 8px; width: 100%; min-width: 0; padding: 0; border: 0; background: none;
+  color: var(--eg-fg); font: inherit; text-align: left; cursor: default;
+}
+.eg-summary-tree { font-family: var(--eg-font-brand); font-size: 15px; font-weight: 600; color: var(--eg-title); text-shadow: var(--eg-text-glow); white-space: nowrap; }
+.eg-summary-seed { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--eg-muted); white-space: nowrap; }
+.eg-summary-tris { display: none; margin-left: auto; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--eg-muted); white-space: nowrap; }
+.eg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.eg-tile { min-width: 0; padding: 6px 9px 5px; border-radius: 10px; background: var(--eg-widget); }
+.eg-tile-value { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--eg-fg); }
+.eg-tile-label { margin-top: 1px; font-size: 10px; letter-spacing: 0.02em; color: var(--eg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.intro .eg-tile-value { color: var(--eg-number); text-shadow: 0 0 8px rgba(255, 179, 71, 0.55); }
+.eg-summary-detail { font-size: 11px; color: var(--eg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eg-summary-detail:empty { display: none; }
+.eg-notes { font-size: 11px; line-height: 1.45; color: var(--eg-muted); overflow-wrap: anywhere; }
+.eg-notes:empty, .eg-status:empty { display: none; }
+.eg-status { font-size: 12px; font-weight: 600; color: var(--eg-accent); overflow-wrap: anywhere; }
+
+/* Folded: only the head line, as a button that unfolds the panel. */
+.eg-collapsed .eg-stats, .eg-collapsed .eg-summary-detail, .eg-collapsed .eg-notes { display: none; }
+.eg-collapsed .eg-summary-tris { display: inline; }
+.eg-panel.eg-collapsed .eg-summary-head { cursor: pointer; border-radius: 8px; margin: -4px -6px; padding: 4px 6px; width: calc(100% + 12px); }
+.eg-panel.eg-collapsed .eg-summary-head:hover { background: var(--eg-widget); }
+
+/* Frame rate, top left of the view: small and out of the way of clicks. */
+.eg-fps {
+  position: absolute; top: 10px; left: 12px; z-index: 5; pointer-events: none; padding: 2px 7px; border-radius: 6px;
+  background: var(--eg-bg); color: var(--eg-muted); font: 600 11px/1.4 ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-variant-numeric: tabular-nums; text-shadow: var(--eg-text-glow);
+}
+.eg-fps:empty { display: none; }
+
+#unsupported {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 460px; padding: 20px 24px;
+  border-radius: 16px; background: var(--eg-bg-strong); box-shadow: var(--eg-shadow); color: var(--eg-fg);
+  font-size: 15px; line-height: 1.5; text-align: center;
+}
+
+/* ---------------------------------------------------------------- First-load title (body.boot) */
+
+#intro {
+  position: absolute; left: 0; right: 0; top: 18%; text-align: center; pointer-events: none;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; text-transform: uppercase; opacity: 0; transition: opacity 0.25s;
+}
+body.boot.intro #intro { opacity: 1; }
+/* Centre over the free view, left of the control panel. */
+@media (min-width: 720px) { #intro { right: 344px; } }
+.intro-title { font-size: clamp(26px, 5vw, 54px); font-weight: 700; letter-spacing: 0.18em; color: #e8fdff; text-shadow: 0 0 6px #19e6ff, 0 0 18px #19e6ff, 0 0 42px #ff2a8c; animation: intro-flicker 3.2s infinite; }
+.intro-sub { margin-top: 10px; font-size: 13px; letter-spacing: 0.4em; color: #ffb347; text-shadow: 0 0 8px #ff8a1f; }
+.intro-sub::after { content: '_'; animation: intro-blink 0.9s steps(1) infinite; }
+@keyframes intro-flicker { 0%, 100% { opacity: 1; } 47% { opacity: 1; } 48% { opacity: 0.55; } 49% { opacity: 1; } 51% { opacity: 0.7; } 52% { opacity: 1; } }
+@keyframes intro-blink { 50% { opacity: 0; } }
+
+/* Retro accents the tokens cannot express. */
+body.intro .eg-brand-name, body.intro .eg-summary-tree { letter-spacing: 0.12em; text-transform: uppercase; font-size: 16px; }
+/* The monospace face runs wider: tighten the few one-line labels so nothing truncates. */
+body.intro .eg-brand-tag { font-size: 9.5px; letter-spacing: -0.03em; }
+body.intro .eg-tile-label { font-size: 9.5px; letter-spacing: -0.03em; }
+body.intro .eg-panel .eg-preset.active, body.intro .eg-panel .eg-btn-primary { text-shadow: 0 0 6px rgba(255, 255, 255, 0.6); }
+
+/* ---------------------------------------------------------------- Small screens */
+
+@media (max-width: 720px) {
+  .lil-gui.root.eg-panel { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; max-height: 52%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-panel * { transition: none !important; animation: none !important; }
+}

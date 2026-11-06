@@ -1,0 +1,296 @@
+{
+  "language": {
+    "label": "Language",
+    "name": "English"
+  },
+  "app": {
+    "title": "Evergrove",
+    "noWebgpu": "Evergrove needs WebGPU, which this browser does not provide. Open it in a recent Chrome or Edge (version 113 or later), Safari 26 or later, or Firefox 141 or later on Windows."
+  },
+  "intro": {
+    "loading": "A procedural tree generator"
+  },
+  "hud": {
+    "fps": "{{fps}} FPS",
+    "fruit_one": "{{count, number}} fruit",
+    "fruit_other": "{{count, number}} fruits",
+    "budgetFit": "fitted to a {{budget, number}} budget",
+    "budgetOver": "over the {{budget, number}} budget even at the lowest detail",
+    "spectrum": "crown spectrum, amplitude ~ f^-{{slope}}",
+    "seed": "Seed {{seed}}",
+    "value": "{{value, number}}",
+    "ms": "{{ms, number}} ms",
+    "tiles": {
+      "tips": "Tips",
+      "triangles": "Triangles",
+      "time": "Build"
+    },
+    "triangles": "{{value, number}} triangles",
+    "detail_one": "{{nodes, number}} nodes · {{count, number}} trunk · trunk radius {{radius}} m",
+    "detail_other": "{{nodes, number}} nodes · {{count, number}} trunks · trunk radius {{radius}} m",
+    "grove_one": "grove: {{count, number}} more tree, {{triangles, number}} triangles",
+    "grove_other": "grove: {{count, number}} more trees, {{triangles, number}} triangles"
+  },
+  "presets": {
+    "Oak": "Oak",
+    "Maple": "Maple",
+    "Conifer": "Conifer",
+    "Acacia": "Acacia",
+    "Poplar": "Poplar",
+    "Willow": "Willow",
+    "Apple": "Apple",
+    "Shrub": "Shrub"
+  },
+  "options": {
+    "algorithm": {
+      "colonize": "Space colonisation",
+      "sweep": "Support sweep (inverse)"
+    },
+    "crownShape": {
+      "sphere": "Sphere",
+      "cone": "Cone",
+      "umbrella": "Umbrella"
+    },
+    "leafShape": {
+      "oval": "Oval",
+      "lance": "Lance",
+      "round": "Round",
+      "maple": "Maple"
+    },
+    "seedMode": {
+      "sequential": "Sequential",
+      "hashed": "Scattered"
+    }
+  },
+  "gui": {
+    "title": "Evergrove",
+    "preset": "Preset",
+    "randomSeed": "Random seed",
+    "github": "Source code on GitHub",
+    "tabs": {
+      "tree": "Tree",
+      "scene": "Scene",
+      "export": "Export"
+    },
+    "tabHints": {
+      "tree": "Shape of the tree: changes what you export.",
+      "scene": "How the view looks: never exported.",
+      "export": "Download this tree, or a batch of variations."
+    },
+    "resetScene": "Reset scene",
+    "seed": "Seed",
+    "download": "Download GLB",
+    "downloadObj": "OBJ",
+    "downloadHint": "Exports the tree you see, with textures.",
+    "collapse": "Hide settings",
+    "expand": "Show settings",
+    "batch": "Batch",
+    "batchHint": "Grow many variations and download them as one ZIP."
+  },
+  "view": {
+    "folder": "View",
+    "leaves": "Leaves",
+    "bark": "Bark",
+    "fruit": "Fruit",
+    "crown": "Crown envelope",
+    "skeleton": "Growth skeleton",
+    "tips": "Attractors / tips",
+    "autoRotate": "Auto rotate",
+    "retro": "Retro look"
+  },
+  "debug": {
+    "folder": "Debugger",
+    "enabled": "Debug the algorithm",
+    "hideFoliage": "Hide leaves and fruit",
+    "surface": "Crown surface (warm bump, cool dip, grey below cut)",
+    "opacity": "Surface opacity",
+    "ends": "Branch ends (green on crown, blue inside, red outside)",
+    "joints": "Joints (yellow fork, pink 3+ way)",
+    "bases": "Trunk bases (white rings)",
+    "unreached": "Unreached samples (purple)",
+    "xray": "Markers through bark",
+    "report": "check: {{joints, number}} joints ({{multiway, number}} 3+ way) · {{outside, number}}/{{ends, number}} ends outside crown (max +{{depth}}%) · {{unreached, number}}/{{samples, number}} samples unreached"
+  },
+  "wind": {
+    "folder": "Wind",
+    "enabled": "Animate",
+    "strength": "Strength",
+    "speed": "Speed",
+    "direction": "Direction (degrees)",
+    "flutter": "Leaf flutter"
+  },
+  "grass": {
+    "folder": "Grass",
+    "enabled": "Show grass",
+    "count": "Blades",
+    "height": "Height (m)",
+    "width": "Blade width (m)",
+    "color": "Base colour",
+    "tipColor": "Tip colour",
+    "windResponse": "Wind response"
+  },
+  "grove": {
+    "folder": "Grove",
+    "enabled": "Show grove",
+    "count": "Trees",
+    "spacing": "Spacing (m)",
+    "variation": "Variation"
+  },
+  "sky": {
+    "folder": "Sky",
+    "cover": "Cloud cover",
+    "cloudSpeed": "Cloud speed",
+    "sunElevation": "Sun elevation (degrees)",
+    "sunAzimuth": "Sun direction (degrees)",
+    "zenith": "Sky colour",
+    "horizon": "Horizon colour"
+  },
+  "lens": {
+    "folder": "Lens",
+    "enabled": "Post-processing",
+    "dof": "Depth of field",
+    "bloom": "Bloom",
+    "vignette": "Vignette",
+    "grain": "Film grain",
+    "exposure": "Exposure"
+  },
+  "export": {
+    "folder": "Export",
+    "glb": "Download GLB (textured)",
+    "obj": "Download OBJ (geometry)",
+    "groveGlb": "Download grove GLB (all trees)",
+    "leafPng": "Download leaf texture",
+    "barkPng": "Download bark texture"
+  },
+  "batch": {
+    "folder": "Batch",
+    "count": "Trees",
+    "seedMode": "Seeds",
+    "variation": "Parameter variation",
+    "fruitChance": "Fruiting trees",
+    "glb": "Include GLB",
+    "obj": "Include OBJ",
+    "run": "Generate and download ZIP",
+    "cancel": "Cancel ({{done}} / {{total}})",
+    "zipping": "Packing ZIP...",
+    "saved_one": "Saved {{count}} tree to {{file}}",
+    "saved_other": "Saved {{count}} trees to {{file}}",
+    "cancelled": "Batch cancelled",
+    "noFormat": "Choose GLB, OBJ or both before generating a batch.",
+    "failed": "Batch failed: {{message}}"
+  },
+  "folders": {
+    "parameters": "Parameters",
+    "crown": "Crown shape",
+    "spectral": "Outline noise",
+    "colonize": "Space colonisation",
+    "tips": "Tips (sweep)",
+    "branches": "Branches",
+    "sweep": "Support sweep",
+    "smoothing": "Smoothing",
+    "bark": "Bark",
+    "leaves": "Leaves",
+    "fruit": "Fruit",
+    "growth": "Growth method",
+    "detail": "Detail and smoothing"
+  },
+  "params": {
+    "seed": "Seed",
+    "limitTriangles": "Limit triangles",
+    "triangleBudget": "Triangle budget",
+    "algorithm": "Algorithm",
+    "crown": {
+      "shape": "Shape",
+      "radius": "Radius (m)",
+      "centerHeight": "Centre height (m)",
+      "stretch": "Vertical stretch",
+      "offsetX": "Offset X (lean)",
+      "offsetZ": "Offset Z (lean)",
+      "sphereTaper": "Taper (+ wide base)",
+      "sphereSquareness": "Squareness (2 = round)",
+      "umbrellaUnderside": "Underside width",
+      "umbrellaRim": "Rim height",
+      "umbrellaSoftness": "Rim softness",
+      "noiseAmount": "Amount",
+      "spectralSlope": "Slope beta",
+      "modes": "Modes",
+      "minFrequency": "Min frequency",
+      "maxFrequency": "Max frequency"
+    },
+    "colonize": {
+      "attractors": "Attractors",
+      "influence": "Influence radius (m)",
+      "kill": "Kill distance (m)",
+      "step": "Step length (m)",
+      "tropism": "Tropism (+up / -weep)",
+      "maxIterations": "Max iterations"
+    },
+    "tips": {
+      "count": "Count",
+      "cut": "Lowest direction",
+      "depth": "Inset depth",
+      "jitter": "Jitter"
+    },
+    "growth": {
+      "gnarl": "Gnarl",
+      "tipRadius": "Tip radius (m)",
+      "pipeExponent": "Pipe exponent",
+      "thickening": "Thickening / m",
+      "layerHeight": "Layer height (m)",
+      "branchAngle": "Branch angle",
+      "mergeRadius": "Merge radius (m)",
+      "trunkPull": "Trunk pull",
+      "crownPull": "Crown pull (leader)"
+    },
+    "shape": {
+      "smoothIterations": "Iterations",
+      "smoothStrength": "Strength",
+      "simplifyAngle": "Simplify angle",
+      "gravity": "Gravity (sag)"
+    },
+    "bark": {
+      "color": "Colour",
+      "radialSegments": "Segments",
+      "subdivisions": "Curve subdivisions",
+      "rootCount": "Roots",
+      "rootLength": "Root reach",
+      "barkTiling": "Texture tiling"
+    },
+    "leaves": {
+      "shape": "Shape",
+      "perTip": "Per tip",
+      "twigDensity": "Along twigs / m",
+      "twigRadius": "Twig radius (m)",
+      "size": "Size (m)",
+      "sizeJitter": "Size jitter",
+      "aspect": "Aspect",
+      "cluster": "Cluster spread",
+      "droop": "Droop",
+      "fold": "Midrib fold",
+      "hue": "Hue",
+      "hueJitter": "Hue jitter",
+      "season": "Season (autumn)"
+    },
+    "fruit": {
+      "enabled": "Bear fruit",
+      "density": "Density",
+      "size": "Size (m)",
+      "sizeJitter": "Size jitter",
+      "segments": "Facets (3 = polygon)",
+      "elongation": "Elongation",
+      "hang": "Stem length (m)",
+      "color": "Colour",
+      "colorRange": "Colour variation"
+    }
+  },
+  "hints": {
+    "crown": "The envelope the branches grow into.",
+    "branches": "Twist, thickness and sag of the limbs.",
+    "leaves": "Leaf cards on the twigs: size, shape and colour.",
+    "fruit": "Optional fruit hanging from the outer twigs.",
+    "bark": "Bark colour, roots and tube detail.",
+    "growth": "How the skeleton grows. Only the active method's settings are shown.",
+    "spectral": "Bumps and dents that make the crown outline irregular.",
+    "detail": "Smoothing, and a triangle limit for lighter exports."
+  }
+}

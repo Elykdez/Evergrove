@@ -1,0 +1,28 @@
+{
+  "name": "evergrove",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Evergrove, a simple procedural tree generator in the browser: spectral crown surface, space-colonising tree growth, GLB/OBJ export",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "i18next": "^26.7.2",
+    "lil-gui": "^0.20.0",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0",
+    "@webgpu/types": "^0.1.74",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.8"
+  }
+}

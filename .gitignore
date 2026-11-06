@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+
+AGENTS.md
+CLAUDE.md
+.claude/launch.json

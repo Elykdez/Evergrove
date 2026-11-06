@@ -1,0 +1,292 @@
+{
+  "language": {
+    "label": "语言",
+    "name": "简体中文"
+  },
+  "app": {
+    "title": "Evergrove",
+    "noWebgpu": "Evergrove 需要 WebGPU，但当前浏览器不支持。请使用较新的 Chrome 或 Edge（113 及以上）、Safari 26 及以上，或 Windows 上的 Firefox 141 及以上版本打开。"
+  },
+  "intro": {
+    "loading": "程序化树木生成器"
+  },
+  "hud": {
+    "fps": "{{fps}} 帧/秒",
+    "fruit_other": "{{count, number}} 个果实",
+    "budgetFit": "已按 {{budget, number}} 面预算精简",
+    "budgetOver": "最低细节下仍超出 {{budget, number}} 面预算",
+    "spectrum": "树冠频谱，振幅 ~ f^-{{slope}}",
+    "seed": "种子 {{seed}}",
+    "value": "{{value, number}}",
+    "ms": "{{ms, number}} 毫秒",
+    "tiles": {
+      "tips": "枝梢",
+      "triangles": "三角面",
+      "time": "耗时"
+    },
+    "triangles": "{{value, number}} 个三角面",
+    "detail_other": "{{nodes, number}} 个节点 · {{count, number}} 根主干 · 主干半径 {{radius}} 米",
+    "grove_other": "树林：另有 {{count, number}} 棵树，{{triangles, number}} 个三角形"
+  },
+  "presets": {
+    "Oak": "橡树",
+    "Maple": "枫树",
+    "Conifer": "针叶树",
+    "Acacia": "金合欢",
+    "Poplar": "杨树",
+    "Willow": "柳树",
+    "Apple": "苹果树",
+    "Shrub": "灌木"
+  },
+  "options": {
+    "algorithm": {
+      "colonize": "空间殖民",
+      "sweep": "支撑扫描（逆向）"
+    },
+    "crownShape": {
+      "sphere": "球形",
+      "cone": "锥形",
+      "umbrella": "伞形"
+    },
+    "leafShape": {
+      "oval": "椭圆形",
+      "lance": "披针形",
+      "round": "圆形",
+      "maple": "枫叶形"
+    },
+    "seedMode": {
+      "sequential": "连续",
+      "hashed": "分散"
+    }
+  },
+  "gui": {
+    "title": "Evergrove",
+    "preset": "预设",
+    "randomSeed": "随机种子",
+    "github": "GitHub 上的源代码",
+    "tabs": {
+      "tree": "树木",
+      "scene": "场景",
+      "export": "导出"
+    },
+    "tabHints": {
+      "tree": "树木的形态：会改变导出内容。",
+      "scene": "画面效果：不会被导出。",
+      "export": "下载当前树木，或批量下载多个变体。"
+    },
+    "resetScene": "重置场景",
+    "seed": "种子",
+    "download": "下载 GLB",
+    "downloadObj": "OBJ",
+    "downloadHint": "导出当前看到的树木，含纹理。",
+    "collapse": "收起设置",
+    "expand": "展开设置",
+    "batch": "批量",
+    "batchHint": "生成多个变体，打包成一个 ZIP 下载。"
+  },
+  "view": {
+    "folder": "视图",
+    "leaves": "树叶",
+    "bark": "树皮",
+    "fruit": "果实",
+    "crown": "树冠包络",
+    "skeleton": "生长骨架",
+    "tips": "吸引点 / 枝梢",
+    "autoRotate": "自动旋转",
+    "retro": "复古风格"
+  },
+  "debug": {
+    "folder": "调试器",
+    "enabled": "调试生长算法",
+    "hideFoliage": "隐藏树叶和果实",
+    "surface": "树冠表面（暖色凸起，冷色凹陷，灰色为截断以下）",
+    "opacity": "表面不透明度",
+    "ends": "枝端（绿色在树冠上，蓝色在内，红色超出）",
+    "joints": "分叉点（黄色二分叉，粉色三叉及以上）",
+    "bases": "树干基部（白色圆环）",
+    "unreached": "未到达的采样点（紫色）",
+    "xray": "标记穿透树皮显示",
+    "report": "检查：{{joints, number}} 个分叉点（{{multiway, number}} 个三叉及以上）· {{outside, number}}/{{ends, number}} 个枝端超出树冠（最多 +{{depth}}%）· {{unreached, number}}/{{samples, number}} 个采样点未到达"
+  },
+  "wind": {
+    "folder": "风",
+    "enabled": "开启动画",
+    "strength": "强度",
+    "speed": "速度",
+    "direction": "方向（度）",
+    "flutter": "树叶抖动"
+  },
+  "grass": {
+    "folder": "草地",
+    "enabled": "显示草地",
+    "count": "草叶数量",
+    "height": "高度（米）",
+    "width": "草叶宽度（米）",
+    "color": "根部颜色",
+    "tipColor": "叶尖颜色",
+    "windResponse": "风力响应"
+  },
+  "grove": {
+    "folder": "树林",
+    "enabled": "显示树林",
+    "count": "树木数量",
+    "spacing": "间距（米）",
+    "variation": "参数变化"
+  },
+  "sky": {
+    "folder": "天空",
+    "cover": "云量",
+    "cloudSpeed": "云速",
+    "sunElevation": "太阳高度角（度）",
+    "sunAzimuth": "太阳方位角（度）",
+    "zenith": "天空颜色",
+    "horizon": "地平线颜色"
+  },
+  "lens": {
+    "folder": "镜头",
+    "enabled": "后处理",
+    "dof": "景深",
+    "bloom": "泛光",
+    "vignette": "暗角",
+    "grain": "胶片颗粒",
+    "exposure": "曝光"
+  },
+  "export": {
+    "folder": "导出",
+    "glb": "下载 GLB（含纹理）",
+    "obj": "下载 OBJ（仅几何）",
+    "groveGlb": "下载树林 GLB（全部树木）",
+    "leafPng": "下载树叶纹理",
+    "barkPng": "下载树皮纹理"
+  },
+  "batch": {
+    "folder": "批量生成",
+    "count": "树木数量",
+    "seedMode": "种子序列",
+    "variation": "参数变化",
+    "fruitChance": "结果树比例",
+    "glb": "包含 GLB",
+    "obj": "包含 OBJ",
+    "run": "生成并下载 ZIP",
+    "cancel": "取消（{{done}} / {{total}}）",
+    "zipping": "正在打包 ZIP...",
+    "saved_other": "已将 {{count}} 棵树保存到 {{file}}",
+    "cancelled": "批量生成已取消",
+    "noFormat": "请先选择 GLB、OBJ 或两者，再进行批量生成。",
+    "failed": "批量生成失败：{{message}}"
+  },
+  "folders": {
+    "parameters": "参数",
+    "crown": "树冠形状",
+    "spectral": "轮廓噪声",
+    "colonize": "空间殖民",
+    "tips": "枝梢（扫描）",
+    "branches": "枝干",
+    "sweep": "支撑扫描",
+    "smoothing": "平滑",
+    "bark": "树皮",
+    "leaves": "树叶",
+    "fruit": "果实",
+    "growth": "生长方法",
+    "detail": "细节与平滑"
+  },
+  "params": {
+    "seed": "种子",
+    "limitTriangles": "限制三角面数",
+    "triangleBudget": "三角面预算",
+    "algorithm": "算法",
+    "crown": {
+      "shape": "形状",
+      "radius": "半径（米）",
+      "centerHeight": "中心高度（米）",
+      "stretch": "垂直拉伸",
+      "offsetX": "X 偏移（倾斜）",
+      "offsetZ": "Z 偏移（倾斜）",
+      "sphereTaper": "锥度（正值底部宽）",
+      "sphereSquareness": "方度（2 为圆）",
+      "umbrellaUnderside": "底面宽度",
+      "umbrellaRim": "伞缘高度",
+      "umbrellaSoftness": "伞缘柔和度",
+      "noiseAmount": "强度",
+      "spectralSlope": "斜率 β",
+      "modes": "模态数",
+      "minFrequency": "最低频率",
+      "maxFrequency": "最高频率"
+    },
+    "colonize": {
+      "attractors": "吸引点数量",
+      "influence": "影响半径（米）",
+      "kill": "消除距离（米）",
+      "step": "步长（米）",
+      "tropism": "向性（+向上 / -下垂）",
+      "maxIterations": "最大迭代次数"
+    },
+    "tips": {
+      "count": "数量",
+      "cut": "最低方向",
+      "depth": "内缩深度",
+      "jitter": "抖动"
+    },
+    "growth": {
+      "gnarl": "扭曲度",
+      "tipRadius": "梢端半径（米）",
+      "pipeExponent": "管道指数",
+      "thickening": "每米增粗",
+      "layerHeight": "层高（米）",
+      "branchAngle": "分枝角度",
+      "mergeRadius": "合并半径（米）",
+      "trunkPull": "主干牵引",
+      "crownPull": "树冠牵引（主梢）"
+    },
+    "shape": {
+      "smoothIterations": "迭代次数",
+      "smoothStrength": "强度",
+      "simplifyAngle": "简化角度",
+      "gravity": "重力（下垂）"
+    },
+    "bark": {
+      "color": "颜色",
+      "radialSegments": "分段数",
+      "subdivisions": "曲线细分",
+      "rootCount": "根数",
+      "rootLength": "根系伸展",
+      "barkTiling": "纹理平铺"
+    },
+    "leaves": {
+      "shape": "形状",
+      "perTip": "每梢叶数",
+      "twigDensity": "沿细枝每米叶数",
+      "twigRadius": "细枝半径（米）",
+      "size": "尺寸（米）",
+      "sizeJitter": "尺寸抖动",
+      "aspect": "长宽比",
+      "cluster": "簇散布",
+      "droop": "下垂",
+      "fold": "中脉折叠",
+      "hue": "色相",
+      "hueJitter": "色相抖动",
+      "season": "季节（秋色）"
+    },
+    "fruit": {
+      "enabled": "结果",
+      "density": "密度",
+      "size": "尺寸（米）",
+      "sizeJitter": "尺寸抖动",
+      "segments": "面数（3 = 多边形）",
+      "elongation": "拉长",
+      "hang": "果柄长度（米）",
+      "color": "颜色",
+      "colorRange": "颜色变化"
+    }
+  },
+  "hints": {
+    "crown": "枝干生长所填充的外形包络。",
+    "branches": "枝干的弯曲、粗细和下垂。",
+    "leaves": "小枝上的叶片：大小、形状和颜色。",
+    "fruit": "挂在外侧小枝上的果实（可选）。",
+    "bark": "树皮颜色、根系和枝干管体的细节。",
+    "growth": "骨架的生长方式。只显示当前方法的设置。",
+    "spectral": "让树冠轮廓不规则的凸起和凹陷。",
+    "detail": "平滑处理，以及用于减轻导出的三角面上限。"
+  }
+}
