@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use Evergrove, please cite it as below."
+title: "Evergrove: a procedural tree generator"
+type: software
+authors:
+  - alias: Elykdez
+abstract: >-
+  A browser-based procedural 3D tree generator. Trees grow into a controllable
+  crown envelope by space colonisation or an inverted tree-support sweep, render
+  with WebGPU, and export as textured GLB or OBJ models.
+keywords:
+  - procedural generation
+  - tree generator
+  - space colonization
+  - 3D models
+  - GLB
+  - WebGPU
+  - three.js
+license: MIT
+version: 0.1.0
+date-released: "2026-11-06"
+repository-code: "https://github.com/Elykdez/Evergrove"
+url: "https://elykdez.github.io/Evergrove/"
+references:
+  - type: article
+    title: "Modeling Trees with a Space Colonization Algorithm"
+    authors:
+      - family-names: Runions
+        given-names: Adam
+      - family-names: Lane
+        given-names: Brendan
+      - family-names: Prusinkiewicz
+        given-names: Przemyslaw
+    year: 2007
+    conference:
+      name: "Eurographics Workshop on Natural Phenomena"

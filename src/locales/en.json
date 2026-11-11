@@ -5,6 +5,7 @@
   },
   "app": {
     "title": "Evergrove",
+    "documentTitle": "Evergrove - Procedural 3D Tree Generator (GLB/OBJ Export)",
     "noWebgpu": "Evergrove needs WebGPU, which this browser does not provide. Open it in a recent Chrome or Edge (version 113 or later), Safari 26 or later, or Firefox 141 or later on Windows."
   },
   "intro": {

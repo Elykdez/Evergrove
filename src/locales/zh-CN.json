@@ -5,6 +5,7 @@
   },
   "app": {
     "title": "Evergrove",
+    "documentTitle": "Evergrove - 程序化 3D 树木生成器（GLB/OBJ 导出）",
     "noWebgpu": "Evergrove 需要 WebGPU，但当前浏览器不支持。请使用较新的 Chrome 或 Edge（113 及以上）、Safari 26 及以上，或 Windows 上的 Firefox 141 及以上版本打开。"
   },
   "intro": {

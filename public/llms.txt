@@ -1,0 +1,29 @@
+# Evergrove
+
+> Evergrove is a free, open-source (MIT) procedural tree generator that runs in the browser. It grows 3D trees into a controllable crown envelope by space colonisation or an inverted tree-support sweep, renders them with WebGPU, and exports textured GLB or OBJ models in metres with Y up.
+
+Evergrove is built with TypeScript, Vite and three.js (WebGPU). Growth and meshing run on the CPU, so every tree is deterministic for a given seed and settings. It needs a browser with WebGPU: Chrome or Edge 113+, Safari 26+, or Firefox 141+ on Windows. The interface is available in English and Simplified Chinese.
+
+Key features:
+
+- Eight presets: oak, maple, conifer, acacia, poplar, willow, apple and shrub
+- Crown shape with spectral outline noise; branches, bark, leaves and optional fruit
+- A 1k to 10k triangle budget that prunes the finest twigs while the canopy keeps its shape
+- Batch generation of up to 500 variants downloaded as one ZIP
+- A grove of up to 16 seeded variants exported as one placed GLB
+- Space colonisation follows Runions, Lane and Prusinkiewicz, "Modeling Trees with a Space Colonization Algorithm" (2007)
+
+## App
+
+- [Evergrove web app](https://elykdez.github.io/Evergrove/): run the generator in the browser, no install
+
+## Docs
+
+- [README](https://github.com/Elykdez/Evergrove/blob/main/README.md): overview, features, quick start and deployment
+- [User guide (English)](https://raw.githubusercontent.com/Elykdez/Evergrove/main/docs/help.en.md): every control and parameter, batch generation, using the exports, and how the algorithms work
+- [User guide (Simplified Chinese)](https://raw.githubusercontent.com/Elykdez/Evergrove/main/docs/help.zh-CN.md): the same guide in Chinese
+
+## Source
+
+- [GitHub repository](https://github.com/Elykdez/Evergrove): source code, issues and releases
+- [License (MIT)](https://github.com/Elykdez/Evergrove/blob/main/LICENSE)

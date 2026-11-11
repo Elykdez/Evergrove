@@ -112,7 +112,7 @@ export function tKey(key: string, options?: Record<string, unknown>): string {
 /** Fills every [data-i18n] element and the document title and language. */
 export function translateDocument() {
   document.documentElement.lang = currentLanguage();
-  document.title = i18next.t('app.title');
+  document.title = i18next.t('app.documentTitle');
   document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
     el.textContent = tKey(el.dataset.i18n!);
   });

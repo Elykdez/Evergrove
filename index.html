@@ -3,15 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evergrove</title>
-    <meta name="description" content="Evergrove, a simple procedural tree generator: grow a tree into a crown envelope and export it as GLB or OBJ." />
+    <title>Evergrove - Procedural 3D Tree Generator (GLB/OBJ Export)</title>
+    <meta name="description" content="Free online procedural 3D tree generator. Grow oak, maple, conifer, willow and more into a crown shape you control, then export low-poly textured GLB or OBJ models for games and rendering." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="alternate" hreflang="en" href="https://elykdez.github.io/Evergrove/?lang=en" />
+    <link rel="alternate" hreflang="zh-CN" href="https://elykdez.github.io/Evergrove/?lang=zh-CN" />
+    <link rel="alternate" hreflang="x-default" href="https://elykdez.github.io/Evergrove/" />
     <meta name="theme-color" content="#cfdbe4" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:title" content="Evergrove" />
-    <meta property="og:image" content="/icon-512.png" />
+    <link rel="canonical" href="https://elykdez.github.io/Evergrove/" />
+    <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Evergrove" />
+    <meta property="og:title" content="Evergrove - procedural tree generator" />
+    <meta property="og:description" content="Free, open-source procedural 3D tree generator in the browser. Space colonisation growth, eight presets, triangle budget, batch and grove export as GLB or OBJ." />
+    <meta property="og:url" content="https://elykdez.github.io/Evergrove/" />
+    <meta property="og:image" content="https://elykdez.github.io/Evergrove/og-image.jpg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="A procedurally generated oak tree standing in a grass field, rendered in Evergrove" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Evergrove",
+        "description": "A simple procedural tree generator that runs in the browser. It grows 3D trees into a controllable crown envelope by space colonisation or an inverted tree-support sweep, and exports them as textured GLB or OBJ files.",
+        "url": "https://elykdez.github.io/Evergrove/",
+        "image": "https://elykdez.github.io/Evergrove/icon-512.png",
+        "screenshot": "https://elykdez.github.io/Evergrove/og-image.jpg",
+        "applicationCategory": "DesignApplication",
+        "applicationSubCategory": "3D modelling",
+        "operatingSystem": "Any (web browser with WebGPU)",
+        "browserRequirements": "Requires WebGPU: Chrome or Edge 113+, Safari 26+, Firefox 141+ on Windows",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/Elykdez/Evergrove",
+        "programmingLanguage": "TypeScript",
+        "softwareVersion": "0.1.0",
+        "inLanguage": ["en", "zh-CN"],
+        "author": { "@type": "Person", "name": "Elykdez", "url": "https://github.com/Elykdez" },
+        "featureList": [
+          "Space colonisation and inverted tree-support sweep growth",
+          "Deterministic results per seed",
+          "Presets: oak, maple, conifer, acacia, poplar, willow, apple, shrub",
+          "Optional fruit with per-tree colour",
+          "1k to 10k triangle budget with automatic level of detail",
+          "WebGPU rendering with wind, sky and procedural grass",
+          "Textured GLB and OBJ export in metres, Y up",
+          "Batch generation of up to 500 variants as one ZIP",
+          "Grove of up to 16 placed variants exported as one GLB"
+        ]
+      }
+    </script>
   </head>
   <body class="intro boot">
     <div id="app"></div>
@@ -20,6 +70,20 @@
       <div class="intro-sub" data-i18n="intro.loading">A procedural tree generator</div>
     </div>
     <div id="unsupported" role="alert" hidden></div>
+    <noscript>
+      <main>
+        <h1>Evergrove: a procedural tree generator</h1>
+        <p>Evergrove is a free, open-source (MIT) web app that generates 3D trees in the browser and exports them as textured GLB or OBJ models for games, rendering and 3D printing previews. It needs JavaScript and a browser with WebGPU.</p>
+        <ul>
+          <li>Grows trees into a crown shape you control, by space colonisation or an inverted tree-support sweep</li>
+          <li>Deterministic: the same seed and settings always give the same tree</li>
+          <li>Eight presets: oak, maple, conifer, acacia, poplar, willow, apple and shrub</li>
+          <li>A 1k to 10k triangle budget that lowers detail just enough to fit</li>
+          <li>Batch generation of up to 500 variants as one ZIP, and a grove of up to 16 placed trees</li>
+        </ul>
+        <p>Source code and documentation: <a href="https://github.com/Elykdez/Evergrove">github.com/Elykdez/Evergrove</a>. User guide: <a href="https://github.com/Elykdez/Evergrove/blob/main/docs/help.en.md">English</a>, <a href="https://github.com/Elykdez/Evergrove/blob/main/docs/help.zh-CN.md">Simplified Chinese</a>.</p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
